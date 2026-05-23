@@ -21,19 +21,19 @@ namespace SportsLeague.Domain.Services
             _tsRepository = tsRepository;
         }
 
-        // ✅ GET ALL
+        
         public async Task<IEnumerable<Sponsor>> GetAllAsync()
         {
             return await _sponsorRepository.GetAllAsync();
         }
 
-        // ✅ GET BY ID
+       
         public async Task<Sponsor?> GetByIdAsync(int id)
         {
             return await _sponsorRepository.GetByIdAsync(id);
         }
 
-        // ✅ CREATE
+       
         public async Task<Sponsor> CreateAsync(Sponsor sponsor)
         {
             if (await _sponsorRepository.ExistsByNameAsync(sponsor.Name))
@@ -45,7 +45,7 @@ namespace SportsLeague.Domain.Services
             return await _sponsorRepository.CreateAsync(sponsor);
         }
 
-        // ✅ UPDATE
+      
         public async Task UpdateAsync(int id, Sponsor sponsor)
         {
             var existing = await _sponsorRepository.GetByIdAsync(id);
@@ -69,7 +69,8 @@ namespace SportsLeague.Domain.Services
             await _sponsorRepository.UpdateAsync(existing);
         }
 
-        // ✅ DELETE
+
+
         public async Task DeleteAsync(int id)
         {
             var exists = await _sponsorRepository.ExistsAsync(id);
@@ -80,7 +81,6 @@ namespace SportsLeague.Domain.Services
             await _sponsorRepository.DeleteAsync(id);
         }
 
-        // 🔥 REGISTER TO TOURNAMENT
         public async Task RegisterToTournamentAsync(int sponsorId, int tournamentId, decimal amount)
         {
             if (amount <= 0)
@@ -106,7 +106,7 @@ namespace SportsLeague.Domain.Services
             });
         }
 
-        // 🔥 GET TOURNAMENTS (CORREGIDO)
+        
         public async Task<IEnumerable<TournamentSponsor>> GetTournamentsAsync(int sponsorId)
         {
             var sponsor = await _sponsorRepository.GetByIdAsync(sponsorId);
@@ -117,7 +117,7 @@ namespace SportsLeague.Domain.Services
             return await _tsRepository.GetBySponsorAsync(sponsorId);
         }
 
-        // 🔥 REMOVE RELATION
+        
         public async Task RemoveFromTournamentAsync(int sponsorId, int tournamentId)
         {
             var relation = await _tsRepository
