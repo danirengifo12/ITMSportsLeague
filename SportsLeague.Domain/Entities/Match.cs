@@ -44,5 +44,7 @@ public class Match : AuditBase
 
     public ICollection<Card> Cards { get; set; } = new List<Card>();
 
+    public ICollection<MatchLineup> Lineups { get; set; } = new List<MatchLineup>();
+
 
 }
